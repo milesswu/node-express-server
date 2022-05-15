@@ -11,7 +11,7 @@ let connection = mysql.createConnection({
 // Connect to database
 connection.connect((error) => {
     if (error) {
-        console.error('Error connecting to DB: ' + err.stack);
+        console.error('Error connecting to DB: ' + error.stack);
         return;
     }
     console.log('Connected as thread id: ' + connection.threadId);
