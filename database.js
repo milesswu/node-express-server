@@ -14,8 +14,20 @@ connection.connect((error) => {
         console.error('Error connecting to DB: ' + err.stack);
         return;
     }
-
     console.log('Connected as thread id: ' + connection.threadId);
+
+    // Create Users table in the database
+    let createTable = 
+    `CREATE TABLE IF NOT EXISTS Users(
+        id int auto_increment primary key,
+        email varchar(225) not null,
+        username varchar(255) not null,
+        password varchar(255) not null
+    );`
+    connection.query(createTable, (error) => {
+        if (error) throw error
+        console.log("Users table created successfully!");
+    })
 })
 
 module.exports = connection;
